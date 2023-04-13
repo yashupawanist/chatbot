@@ -12,8 +12,8 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
-training = pd.read_csv('Data/Training.csv')
-testing= pd.read_csv('Data/Testing.csv')
+training = pd.read_csv('Training.csv')
+testing= pd.read_csv('Testing.csv')
 cols= training.columns
 cols= cols[:-1]
 x = training[cols]
@@ -84,7 +84,7 @@ def calc_condition(exp,days):
 
 def getDescription():
     global description_list
-    with open('MasterData/symptom_Description.csv') as csv_file:
+    with open('symptom_Description.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         for row in csv_reader:
@@ -96,7 +96,7 @@ def getDescription():
 
 def getSeverityDict():
     global severityDictionary
-    with open('MasterData/Symptom_severity.csv') as csv_file:
+    with open('Symptom_severity.csv') as csv_file:
 
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -110,7 +110,7 @@ def getSeverityDict():
 
 def getprecautionDict():
     global precautionDictionary
-    with open('MasterData/symptom_precaution.csv') as csv_file:
+    with open('symptom_precaution.csv') as csv_file:
 
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -136,7 +136,7 @@ def check_pattern(dis_list,inp):
     else:
         return 0,[]
 def sec_predict(symptoms_exp):
-    df = pd.read_csv('Data/Training.csv')
+    df = pd.read_csv('Training.csv')
     X = df.iloc[:, :-1]
     y = df['prognosis']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=20)
@@ -216,7 +216,7 @@ def tree_to_code(tree, feature_names):
             present_disease = print_disease(tree_.value[node])
             # print( "You may have " +  present_disease )
             red_cols = reduced_data.columns 
-            symptoms_given = red_cols[reduced_data.loc[present_disease].values[0].nonzero()]
+            symptoms_given = red_cols[reduced_data.loc[present_disease].values[0].nonzero()]git add
             # dis_list=list(symptoms_present)
             # if len(dis_list)!=0:
             #     print("symptoms present  " + str(list(symptoms_present)))
